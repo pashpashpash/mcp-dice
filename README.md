@@ -30,7 +30,7 @@ uvx mcp-dice
 The server accepts a JSON object with a `notation` field:
 ```json
 {
-  "notation": "2d6+3"  // Rolls two six-sided dice
+  "notation": "2d6+3"
 }
 ```
 
@@ -70,10 +70,11 @@ Example responses:
   }
 }
 ```
+
 </details>
 
 <details>
-<summary>Windows (WSL) Configuration</summary>
+<summary>WSL Configuration</summary>
 
 ```json
 {
