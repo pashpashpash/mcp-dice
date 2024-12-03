@@ -10,8 +10,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
-        matrix:
-          python-version: ['3.10', '3.11', '3.12']
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
 
@@ -19,13 +19,20 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+
       - name: Install uv
         run: |
           curl -LsSf https://astral.sh/uv/install.sh | sh
           echo "$HOME/.uv/bin" >> $GITHUB_PATH
 
+      - name: Create virtual environment
+        run: |
+          uv venv
+          echo "VIRTUAL_ENV=$(pwd)/.venv" >> $GITHUB_ENV
+          echo "$(pwd)/.venv/bin" >> $GITHUB_PATH
+
       - name: Install dependencies
-        run: uv pip install -e ".[dev]" # Assuming you have dev dependencies group
+        run: uv pip install -e ".[dev]"
 
       - name: Run tests
         run: uv run pytest
