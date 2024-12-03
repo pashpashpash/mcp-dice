@@ -4,7 +4,7 @@ A Model Context Protocol (MCP) server that enables Large Language Models (LLMs) 
 
 ## Features
 
-- Supports standard dice notation (e.g., `1d20`, `3d6`)
+- Supports standard dice notation (e.g., `1d20`, `3d6`, `2d8+1`)
 - Returns both individual rolls and the total sum
 - Easy integration with Claude Desktop
 - Compatible with MCP Inspector for debugging
@@ -30,7 +30,7 @@ uvx mcp-dice
 The server accepts a JSON object with a `notation` field:
 ```json
 {
-  "notation": "2d6"  // Rolls two six-sided dice
+  "notation": "2d6+3"  // Rolls two six-sided dice
 }
 ```
 
@@ -38,12 +38,14 @@ Example responses:
 ```json
 {
   "rolls": [
-    2,
+    3,
     1
   ],
-  "sum": 3,
-  "notation": "2d6",
-  "timestamp": "2024-12-02T14:47:12.684439"
+  "sum": 4,
+  "modifier": 3,
+  "total": 7,
+  "notation": "2d6+3",
+  "timestamp": "2024-12-03T16:36:38.926452"
 }
 ```
 
