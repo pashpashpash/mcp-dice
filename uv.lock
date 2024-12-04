@@ -147,7 +147,7 @@ wheels = [
 
 [[package]]
 name = "mcp-dice"
-version = "0.1.0"
+version = "0.1.2"
 source = { editable = "." }
 dependencies = [
     { name = "mcp" },
