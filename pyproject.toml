@@ -1,10 +1,15 @@
 [project]
 name = "mcp-dice"
-version = "0.1.0"
+version = "0.1.1"
 description = "MCP server enabling LLMs to roll dice"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = ["mcp>=1.0.0", "python-dotenv>=1.0.1"]
+
+[project.urls]
+"Homepage" = "https://github.com/YourUsername/mcp-dice"
+"Repository" = "https://github.com/YourUsername/mcp-dice"
+"Bug Tracker" = "https://github.com/YourUsername/mcp-dice/issues"
 
 [[project.authors]]
 name = "Yamato Matsuoka"
