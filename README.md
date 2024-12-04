@@ -14,10 +14,7 @@ A Model Context Protocol (MCP) server that enables Large Language Models (LLMs) 
 
 ## Installation
 
-```shell
-# Install using uv
-uv pip install mcp-dice
-```
+Make `uv` available: https://docs.astral.sh/uv/getting-started/installation/
 
 ## Usage
 
@@ -66,7 +63,7 @@ Example responses:
 ```json
 {
   "mcpServers": {
-    "dice_service": {
+    "dice": {
       "command": "uvx",
       "args": ["mcp-dice"]
     }
@@ -128,25 +125,29 @@ npx @modelcontextprotocol/inspector uvx mcp-dice
 ### Claude Desktop Configuration for Development
 
 <details>
-<summary>macOS Configuration (local dev)</summary>
+<summary>macOS configuration (local dev)</summary>
+
 ```json
 {
   "mcpServers": {
-    "dice_service": {
+    "dice": {
       "command": "uv",
       "args": [
         "run",
         "--directory",
-        "path/to/mcp-dice-repo mcp-dice"
+        "path/to/mcp-dice-repo",
+        "mcp-dice"
       ]
     }
   }
 }
 ```
+
+Note: Replace `path/to/mcp-dice-repo` with the path to the repository on your filesystem.
 </details>
 
 <details>
-<summary>Windows (WSL) Configuration (local dev)</summary>
+<summary>Windows (WSL) configuration (local dev)</summary>
 
 ```json
 {
@@ -164,6 +165,6 @@ npx @modelcontextprotocol/inspector uvx mcp-dice
 }
 ```
 
-Note: Replace `zsh` with your login shell.
+Note: Replace `zsh` with your login shell. Also, replace `path/to/mcp-dice-repo` with the path to the repository on your WSL filesystem.
 </details>
 
