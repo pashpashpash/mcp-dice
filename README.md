@@ -2,8 +2,9 @@
 
 ![screenshot](https://github.com/user-attachments/assets/ff7615b8-46ba-4be5-8287-8e1bf348ae28)
 
-
 A Model Context Protocol (MCP) server that enables Large Language Models (LLMs) to roll dice. It accepts standard dice notation (e.g., `1d20`) and returns both individual rolls and their sum.
+
+<a href="https://glama.ai/mcp/servers/vzu553gv26"><img width="380" height="200" src="https://glama.ai/mcp/servers/vzu553gv26/badge" /></a>
 
 ## Features
 
