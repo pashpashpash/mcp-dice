@@ -1,5 +1,6 @@
 # mcp-dice: A MCP Server for Rolling Dice
 
+[![smithery badge](https://smithery.ai/badge/mcp-dice)](https://smithery.ai/protocol/mcp-dice)
 ![screenshot](https://github.com/user-attachments/assets/ff7615b8-46ba-4be5-8287-8e1bf348ae28)
 
 A Model Context Protocol (MCP) server that enables Large Language Models (LLMs) to roll dice. It accepts standard dice notation (e.g., `1d20`) and returns both individual rolls and their sum.
@@ -14,6 +15,14 @@ A Model Context Protocol (MCP) server that enables Large Language Models (LLMs) 
 - Compatible with MCP Inspector for debugging
 
 ## Installation
+
+### Installing via Smithery
+
+To install Dice Roller for Claude Desktop automatically via [Smithery](https://smithery.ai/protocol/mcp-dice):
+
+```bash
+npx @smithery/cli install mcp-dice --client claude
+```
 
 Make `uv` available: https://docs.astral.sh/uv/getting-started/installation/
 
@@ -168,4 +177,3 @@ Note: Replace `path/to/mcp-dice-repo` with the path to the repository on your fi
 
 Note: Replace `zsh` with your login shell. Also, replace `path/to/mcp-dice-repo` with the path to the repository on your WSL filesystem.
 </details>
-
