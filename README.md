@@ -1,14 +1,10 @@
 # mcp-dice: A MCP Server for Rolling Dice
 
-[![smithery badge](https://smithery.ai/badge/mcp-dice)](https://smithery.ai/protocol/mcp-dice)
-![screenshot](https://github.com/user-attachments/assets/ff7615b8-46ba-4be5-8287-8e1bf348ae28)
-
 A Model Context Protocol (MCP) server that enables Large Language Models (LLMs) to roll dice. It accepts standard dice notation (e.g., `1d20`) and returns both individual rolls and their sum.
 
-<a href="https://glama.ai/mcp/servers/vzu553gv26"><img width="380" height="200" src="https://glama.ai/mcp/servers/vzu553gv26/badge" /></a>
+![screenshot](https://github.com/user-attachments/assets/ff7615b8-46ba-4be5-8287-8e1bf348ae28)
 
 ## Features
-
 - Supports standard dice notation (e.g., `1d20`, `3d6`, `2d8+1`)
 - Returns both individual rolls and the total sum
 - Easy integration with Claude Desktop
@@ -16,27 +12,31 @@ A Model Context Protocol (MCP) server that enables Large Language Models (LLMs) 
 
 ## Installation
 
-### Installing via Smithery
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/pashpashpash/mcp-dice.git
+   cd mcp-dice
+   ```
 
-To install Dice Roller for Claude Desktop automatically via [Smithery](https://smithery.ai/protocol/mcp-dice):
+2. **Set up Python Environment**:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows, use: venv\Scripts\activate
+   ```
 
-```bash
-npx @smithery/cli install mcp-dice --client claude
-```
+3. **Install Dependencies**:
+   ```bash
+   pip install -e .
+   ```
 
-Make `uv` available: https://docs.astral.sh/uv/getting-started/installation/
+4. **Install Development Dependencies** (optional):
+   ```bash
+   pip install -e ".[dev]"
+   ```
 
 ## Usage
 
-### Basic Command Line Usage
-
-```shell
-# Using uvx
-uvx mcp-dice
-```
-
 ### Input Format
-
 The server accepts a JSON object with a `notation` field:
 ```json
 {
@@ -61,30 +61,26 @@ Example responses:
 
 ## Claude Desktop Configuration
 
-### Location
+### Configuration File Location
 - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - Windows: `%APPDATA%/Claude/claude_desktop_config.json`
 
-### Examples
-
-<details>
-<summary>macOS Configuration</summary>
+### Basic Configuration
 
 ```json
 {
   "mcpServers": {
     "dice": {
-      "command": "uvx",
-      "args": ["mcp-dice"]
+      "command": "python",
+      "args": ["-m", "mcp_dice"],
+      "cwd": "path/to/mcp-dice"
     }
   }
 }
 ```
+Note: Replace "path/to/mcp-dice" with the actual path to your cloned repository.
 
-</details>
-
-<details>
-<summary>WSL Configuration</summary>
+### WSL Configuration
 
 ```json
 {
@@ -93,87 +89,40 @@ Example responses:
       "command": "wsl",
       "args": [
         "-e",
-        "zsh",
-        "-lc",
-        "uvx mcp-dice"
-      ]
+        "python",
+        "-m",
+        "mcp_dice"
+      ],
+      "cwd": "path/to/mcp-dice"
     }
   }
 }
 ```
-
-Note: Replace `zsh` with your login shell.
-</details>
+Note: Adjust the path according to your WSL filesystem.
 
 ## Development and Debugging
 
-### Installing Development Dependencies
-
-```shell
-# Clone the repository
-git clone https://github.com/yourusername/mcp-dice
-cd mcp-dice
-
-# Install development dependencies
-uv pip install -e ".[dev]"
-```
-
 ### Running Tests
-
-```shell
-uv run pytest
+```bash
+pytest
 ```
 
 ### Using MCP Inspector
+The [MCP Inspector](https://github.com/modelcontextprotocol/inspector) is a useful tool for debugging your MCP server:
 
-The [MCP Inspector](https://github.com/modelcontextprotocol/inspector) is a useful tool for debugging your MCP server. Install and run it using npm:
-
-```shell
-npx @modelcontextprotocol/inspector uvx mcp-dice
+```bash
+cd path/to/mcp-dice
+npx @modelcontextprotocol/inspector python -m mcp_dice
 ```
 
-### Claude Desktop Configuration for Development
-
-<details>
-<summary>macOS configuration (local dev)</summary>
-
-```json
-{
-  "mcpServers": {
-    "dice": {
-      "command": "uv",
-      "args": [
-        "run",
-        "--directory",
-        "path/to/mcp-dice-repo",
-        "mcp-dice"
-      ]
-    }
-  }
-}
+View logs with:
+```bash
+tail -n 20 -f ~/Library/Logs/Claude/mcp*.log
 ```
 
-Note: Replace `path/to/mcp-dice-repo` with the path to the repository on your filesystem.
-</details>
+## License
 
-<details>
-<summary>Windows (WSL) configuration (local dev)</summary>
+Licensed under MIT - see [LICENSE](LICENSE) file.
 
-```json
-{
-  "mcpServers": {
-    "dice": {
-      "command": "wsl",
-      "args": [
-        "-e",
-        "zsh",
-        "-lc",
-        "uv run --directory path/to/mcp-dice-repo mcp-dice"
-      ]
-    }
-  }
-}
-```
-
-Note: Replace `zsh` with your login shell. Also, replace `path/to/mcp-dice-repo` with the path to the repository on your WSL filesystem.
-</details>
+---
+Note: This is a fork of the [original mcp-dice repository](https://github.com/yamaton/mcp-dice).
